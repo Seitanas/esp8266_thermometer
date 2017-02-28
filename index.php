@@ -5,8 +5,17 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
     <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/hammer.min.js"></script>
     <script src="js/Chart.js"></script>
+    <script src="js/chartjs-plugin-zoom.min.js"></script>
     <meta name="author" content="Tadas Ustinavičius">
+    <style>
+    canvas {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+    }
+    </style>
 </head>
 <body>
 <div class="container-fluid">
@@ -52,7 +61,16 @@ var ESPchart = new Chart(ctx, {
 	},
 	options: {
 	    responsive: false,
-	}
+	    pan: {
+    		enabled: true,
+	        mode: 'xy'
+		},
+	    zoom: {
+    		enabled: true,
+    		mode: 'x',
+		sensitivity: 0.0001,
+		}
+	    }
     });
 function get_chart_data(year,month,day){
     $.getJSON('get_data.php?year=' + year + '&month=' + month + '&day=' + day, function(data) {
