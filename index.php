@@ -15,6 +15,8 @@
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
+	width: 100%;
+	height: auto;
     }
     </style>
 </head>
@@ -24,7 +26,7 @@
 	<div class="col-md-1"></div>
 	<div class="col-md-8">
 	    <h2>ESP8266 temperature chart</h2>
-	    <canvas id="ESPchart" height="400" width="1200"></canvas>
+	    <div><canvas id="ESPchart" height="400" width="1200"></canvas></div>
 	</div>
 	<div class="col-md-1">
 	    <div class="form-group">
