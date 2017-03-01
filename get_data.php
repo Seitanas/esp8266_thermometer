@@ -3,13 +3,16 @@ require_once('functions.php');
 $year=$_GET['year'];
 $month=$_GET['month'];
 $day=$_GET['day'];
+$interval=$_GET['interval'];
 if (empty($year))
     $year=date("Y");
 if (empty($month))
     $month=date("m");
 if (empty($day))
     $day=date("d");
-$temperature_data=get_SQL_array("SELECT date, data FROM data WHERE date LIKE '$year-$month-$day%'");
+if (empty($interval))
+    $interval=5;
+$temperature_data=get_SQL_array("SELECT date, data FROM data WHERE date LIKE '$year-$month-$day%' AND  mod(id,'$interval')=0");
 $js_chart_data=array();
 $x=0;
 while (isset($temperature_data[$x]['data'])){

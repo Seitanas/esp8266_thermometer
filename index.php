@@ -8,6 +8,7 @@
     <script src="js/hammer.min.js"></script>
     <script src="js/Chart.js"></script>
     <script src="js/chartjs-plugin-zoom.min.js"></script>
+
     <meta name="author" content="Tadas Ustinavičius">
     <style>
     canvas {
@@ -35,6 +36,16 @@
 		</select>
 		<label for="day">Day:</label>
 		<select class="form-control" id="day">
+		</select>
+		<label for="interval">Marker size:</label>
+		<select class="form-control" id="interval">
+		    <option value="1">1 min</option>
+		    <option value="2">2 mins</option>
+		    <option value="3">3 mins</option>
+		    <option value="4">4 mins</option>
+		    <option value="5" selected>5 mins</option>
+		    <option value="10">10 mins</option>
+		    <option value="10">30 mins</option>
 		</select>
 	    </div>
 	</div>
@@ -72,8 +83,8 @@ var ESPchart = new Chart(ctx, {
 		}
 	    }
     });
-function get_chart_data(year,month,day){
-    $.getJSON('get_data.php?year=' + year + '&month=' + month + '&day=' + day, function(data) {
+function get_chart_data(year,month,day,interval){
+    $.getJSON('get_data.php?year=' + year + '&month=' + month + '&day=' + day + '&interval=' + $('#interval').val(), function(data) {
 	ESPchart.data.labels = data.date;
 	ESPchart.data.datasets[0].data = data.data;
 	ESPchart.update();
@@ -104,7 +115,7 @@ function fill_select(year, month){
 		}
 		day=data[data.length-1].Day; //we allways take last entry for selected month
 		$('#day').val(day);
-		get_chart_data(year, month, day);
+		get_chart_data(year, month, day, $('#interval').val());
 	    });
 	});
     }
@@ -117,7 +128,7 @@ function fill_select(year, month){
 	    }
 	    day=data[data.length-1].Day; //we allways take last entry for selected month
 	    $('#day').val(day);
-	    get_chart_data(year, month, day);
+	    get_chart_data(year, month, day, $('#interval').val());
 	});
     }
 }
@@ -147,6 +158,9 @@ $(document).ready(function () {
 	fill_select ($( "#year" ).val(),$( "#month" ).val());
     });
     $('#day').on('change', function(){
+	get_chart_data($( "#year" ).val(), $( "#month" ).val(), $( "#day" ).val());
+    });
+    $('#interval').on('change', function(){
 	get_chart_data($( "#year" ).val(), $( "#month" ).val(), $( "#day" ).val());
     });
 });
