@@ -13,7 +13,7 @@ WEB: PHP MySQL
 ESP8266: Micropython firmware  
   
   
-Since project is aimed to 512K flash ESP module, which is to litte to have internal flash filesystem, you will have to compile monitor into firmware:  
+Since project is aimed to 512K flash ESP module, which is too small to have internal flash filesystem, you will have to compile monitor into firmware:  
 Follow steps described in https://github.com/adafruit/esp8266-micropython-vagrant to create your build environment.  
   
 In your build environment:  
