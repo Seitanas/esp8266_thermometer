@@ -89,6 +89,7 @@ function get_chart_data(year,month,day,interval){
     $.getJSON('get_data.php?year=' + year + '&month=' + month + '&day=' + day + '&interval=' + $('#interval').val(), function(data) {
 	ESPchart.data.labels = data.date;
 	ESPchart.data.datasets[0].data = data.data;
+	ESPchart.data.datasets[0].label='Temperature (current: ' + data.data[data.data.length-1] + ')' ;
 	ESPchart.update();
     });
 }
