@@ -7,6 +7,8 @@ ESP module sends data via WIFI to remote web server.
   
   
 Demo can be viewed on: http://esp.ring.lt/
+  
+![esp.ring.lt](https://raw.githubusercontent.com/Seitanas/esp8266_thermometer/master/esp.ring.lt.jpg)
 
 Requirements:  
 WEB: PHP MySQL  
